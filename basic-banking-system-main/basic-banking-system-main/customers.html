@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Accounts | Basic Banking System</title>
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="assets/css/customer.css">
+    <link rel="stylesheet" href="assets/css/popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- navbar starts here  -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="./index.html">Western Bank</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html">Home </a>
+                </li>
+                <li class="nav-item  active">
+                    <a class="nav-link" href="./customers.html"
+                        style="color: rgb(37, 36, 36)!important; background-color: rgb(180, 178, 178);">Send Money</a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+    <!-- navbar ends here  -->
+<div class="container-fluid hero-con">
+    
+    <div class="my-info text-center">
+        <h2>Name:Joyce Joseph</h2>
+        <h4>Net Bank Balance: $<span id="myAccountBalance">50000</span></h4>
+
+        <button class="btn btn-info" data-toggle="modal" data-target="#sendMoney" background-color>Send Money </button>
+        <a class="btn btn-info" href="" data-toggle="modal" data-target="#transactionHistory">See All Transactions</a>
+    </div>
+
+    <!-- Modal send money -->
+    <div class="modal fade" id="sendMoney" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send Money</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div class="input-group mb-3">
+                            <input type="text" id="enterName" class="form-control" placeholder="Recipient's username"
+                                aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">@email.com</span>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>
+                            <input type="text" id="enterAmount" class="form-control" placeholder=" Enter Amount"
+                                aria-label="Amount (to the nearest dollar)">
+                            <div class="input-group-append">
+                                <span class="input-group-text">.00</span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="sendMoney()" class="btn btn-success" data-dismiss="modal">Send
+                        Money</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal transaction History-->
+    <div class="modal fade" id="transactionHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Transaction History</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ol id="transaction-history-body">
+
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- table  -->
+    <div class="container">
+        <table style= "background-color: beige">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr class="table-danger">
+                        <th scope="col">Sl. No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Bank Balance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <div class="table-info">
+                        <td scope="row">1</td>
+                        <td><a class="button" href="#popup1">Shivesh</a></td>
+                        </div>
+                        <div id="popup1" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Shivesh Has Paid You Rs.5000</h1>
+                                    <p>Amount Credited by: Shivesh</p>
+                                    <p>Amount Credited on:08-July-2002</p>
+                                    <p>E-mail Id: shiv@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>shiv@gmail.com</td>
+                        <td>
+                            <p id="ShiveshBankBalance">5000</p>
+                        </td>
+                    </tr>
+                    <div class="table-info">
+                        <td scope="row">2</td>
+                        <td><a class="button" href="#popup2">Anna</a></td>
+                        </div>
+                        <div id="popup2" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Anna Has Paid You Rs.45000</h1>
+                                    <p>Amount Credited by: Anna</p>
+                                    <p>Amount Credited on:15-March-2002</p>
+                                    <p>E-mail Id: anna@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>anna@gmail.com</td>
+                        <td>
+                            <p id="khushiBankBalance">45000</p>
+                        </td>
+                    </tr>
+                    <div class="table-info">
+                        <td scope="row">3</td>
+                        <td><a class="button" href="#popup3">Alan</a></td>
+                        </div>
+                        <div id="popup3" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Alan Has Paid You Rs.10000</h1>
+                                    <p>Amount Credited by: Alan</p>
+                                    <p>Amount Credited on:17-April-2022/p>
+                                    <p>E-mail Id: alan123@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>alan123@gmail.com</td>
+                        <td>
+                            <p id="AlanBankBalance">10000</p>
+                        </td>
+                    </tr>
+
+                    <div class="table-info">
+                        <td scope="row">4</td>
+                        <td><a class="button" href="#popup4">Khushi</a></td>
+                        </div>
+                        <div id="popup4" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Khushi Has Paid You Rs.21350</h1>
+                                    <p>Amount Credited by: Khushi</p>
+                                    <p>Amount Credited on:10-June-2001</p>
+                                    <p>E-mail Id: khushi@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>khushi@gmail.com</td>
+                        <td>
+                            <p id="KhushiBankBalance">21350</p>
+                        </td>
+                    </tr>
+
+                    <div class="table-info">
+                        <td scope="row">5</td>
+                        <td><a class="button" href="#popup5">Sanjana</a></td>
+                        </div>
+                        <div id="popup5" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Sanjana Has Paid You Rs.11350</h1>
+                                    <p>Amount Credited by: Sanjana</p>
+                                    <p>Amount Credited on:25-July-1974</p>
+                                    <p>E-mail Id: sanju@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>sanju@gmail.com</td>
+                        <td>
+                            <p id="SanjanaBankBalance">11350</p>
+                        </td>
+                    </tr>
+
+                    <div class="table-info">
+                        <td scope="row">6</td>
+                        <td><a class="button" href="#popup6">Aarav</a></td>
+                        </div>
+                        <div id="popup6" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Aarav Has Paid You Rs.1012</h1>
+                                    <p>Amount Credited by: Aarav</p>
+                                    <p>Amount Credited on:17-May-1989</p>
+                                    <p>E-mail Id: aarav@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>aarav@email.com</td>
+                        <td>
+                            <p id="AaravBankBalance">1012</p>
+                        </td>
+                    </tr>
+                    <div class="table-info">
+                        <td scope="row">7</td>
+                        <td><a class="button" href="#popup7">Neil</a></td>
+                        </div>
+                        <div id="popup7" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Neil Has Paid You Rs.76000</h1>
+                                    <p>Amount Credited by: Neil</p>
+                                    <p>Amount Credited on:19-Feb-2005</p>
+                                    <p>E-mail Id: neil@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>neil@gmail.com</td>
+                        <td>
+                            <p id="khushiBankBalance">76000</p>
+                        </td>
+                    </tr>
+                    
+                    <div class="table-info">
+                        <td scope="row">8</td>
+                        <td><a class="button" href="#popup8">Aaditya</a></td>
+                        </div>
+                        <div id="popup8" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Aaditya Has Paid You Rs.35603</h1>
+                                    <p>Amount Credited by: Aaditya</p>
+                                    <p>Amount Credited on:17-May-2001</p>
+                                    <p>E-mail Id: aaditya@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>aaditya@email.com</td>
+                        <td>
+                            <p id="aadityaBankBalance">35603</p>
+                        </td>
+                    </tr>
+
+                    
+                    <div class="table-info">
+                        <td scope="row">9</td>
+                        <td><a class="button" href="#popup9">Happy</a></td>
+                        </div>
+                        <div id="popup9" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Happy Has Paid You Rs.8500</h1>
+                                    <p>Amount Credited by: Happy</p>
+                                    <p>Amount Credited on:01-Feb-2003</p>
+                                    <p>E-mail Id: happy@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>happy@gmail.com</td>
+                        <td>
+                            <p id="HappyBankBalance">8500</p>
+                        </td>
+                    </tr>
+                    
+                      
+                            <div class="table-info">
+                        <td scope="row">10</td>
+                        <td><a class="button" href="#popup10">Arnav</a></td>
+                        </div>
+                        <div id="popup10" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Arnav Has Paid You Rs.21350</h1>
+                                    <p>Amount Credited by: Arnav</p>
+                                    <p>Amount Credited on:27-Sept-1994</p>
+                                    <p>E-mail Id: arnav@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>arnav@gmail.com</td>
+                        <td>
+                            <p id="ArnavBankBalance">21350</p>
+                        </td>
+                    </tr>
+                   
+                    
+                     
+                            <div class="table-info">
+                        <td scope="row">11</td>
+                        <td><a class="button" href="#popup11">Meenu</a></td>
+                        </div>
+                        <div id="popup11" class="overlay">
+                            <div class="popup">
+                                <a class="close" href="#">&times;</a>
+                                <div class="content">
+                                    <h1>Meenu Has Paid You Rs.55222</h1>
+                                    <p>Amount Credited by: Meenu</p>
+                                    <p>Amount Credited on:25-October-1999</p>
+                                    <p>E-mail Id: meenu@gmail.com </p>
+                                </div>
+                            </div>
+                        </div>  
+                        <td>meenu@gmail.com</td>
+                        <td>
+                            <p id="MeenuBankBalance">55222</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</table>
+</div>
+
+    <script src="assets/js/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"></script>
+</body>
+</html>
